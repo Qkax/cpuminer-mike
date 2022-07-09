@@ -188,6 +188,18 @@ cpuminer_SOURCES = \
   algo/gr/cryptonote/cryptonight_turtle.c \
   algo/gr/cryptonote/cryptonight_turtle_lite.c \
   algo/gr/gr-gate.c \
+  algo/mike/cryptonote/crypto/aesb.c \
+  algo/mike/cryptonote/crypto/hash.c \
+  algo/mike/cryptonote/crypto/c_skein.c \
+  algo/mike/cryptonote/cryptonight.c \
+  algo/mike/cryptonote/cryptonight_dark.c \
+  algo/mike/cryptonote/cryptonight_dark_lite.c \
+  algo/mike/cryptonote/cryptonight_fast.c \
+  algo/mike/cryptonote/cryptonight_lite.c \
+  algo/mike/cryptonote/cryptonight_soft_shell.c \
+  algo/mike/cryptonote/cryptonight_turtle.c \
+  algo/mike/cryptonote/cryptonight_turtle_lite.c \
+  algo/mike/mike-gate.c \
   algo/simd/sph_simd.c \
   algo/simd/nist.c \
   algo/simd/vector.c \

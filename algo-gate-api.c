@@ -250,6 +250,7 @@ bool register_algo_gate( int algo, algo_gate_t *gate )
     case ALGO_YESPOWER:      register_yespower_algo      ( gate ); break;
     case ALGO_YESPOWERR16:   register_yespowerr16_algo   ( gate ); break;
     case ALGO_ZR5:           register_zr5_algo           ( gate ); break;
+    case ALGO_MIKE:          register_mike_algo          ( gate ); break;
    default:
       applog(LOG_ERR,"FAIL: algo_gate registration failed, unknown algo %s.\n", algo_names[opt_algo] );
       return false;
@@ -341,6 +342,7 @@ const char* const algo_alias_map[][2] =
   { "x16r-hex",          "hex"          },
   { "yenten",            "yescryptr16"  },
   { "ziftr",             "zr5"          },
+  { "mikehash",          "mike"         },
   { NULL,                NULL           }   
 };
 
