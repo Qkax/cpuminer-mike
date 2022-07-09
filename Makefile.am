@@ -176,18 +176,6 @@ cpuminer_SOURCES = \
   algo/shavite/sph-shavite-aesni.c \
   algo/shavite/shavite-hash-2way.c \
   algo/shavite/shavite.c \
-  algo/gr/cryptonote/crypto/aesb.c \
-  algo/gr/cryptonote/crypto/hash.c \
-  algo/gr/cryptonote/crypto/c_skein.c \
-  algo/gr/cryptonote/cryptonight.c \
-  algo/gr/cryptonote/cryptonight_dark.c \
-  algo/gr/cryptonote/cryptonight_dark_lite.c \
-  algo/gr/cryptonote/cryptonight_fast.c \
-  algo/gr/cryptonote/cryptonight_lite.c \
-  algo/gr/cryptonote/cryptonight_soft_shell.c \
-  algo/gr/cryptonote/cryptonight_turtle.c \
-  algo/gr/cryptonote/cryptonight_turtle_lite.c \
-  algo/gr/gr-gate.c \
   algo/mike/cryptonote/crypto/aesb.c \
   algo/mike/cryptonote/crypto/hash.c \
   algo/mike/cryptonote/crypto/c_skein.c \

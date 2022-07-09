@@ -178,7 +178,7 @@ bool register_algo_gate( int algo, algo_gate_t *gate )
     case ALGO_DROP:          register_drop_algo          ( gate ); break;
     case ALGO_FRESH:         register_fresh_algo         ( gate ); break;
     case ALGO_GROESTL:       register_groestl_algo       ( gate ); break;
-    case ALGO_GR:            register_gr_algo            ( gate ); break;
+    //case ALGO_GR:            register_gr_algo            ( gate ); break;
     case ALGO_HEAVY:         register_heavy_algo         ( gate ); break;
     case ALGO_HEX:           register_hex_algo           ( gate ); break;
     case ALGO_HMQ1725:       register_hmq1725_algo       ( gate ); break;
@@ -324,7 +324,7 @@ const char* const algo_alias_map[][2] =
   { "droplp",            "drop"         },
   { "espers",            "hmq1725"      },
   { "flax",              "c11"          },
-  { "grhash",            "gr"           },
+ // { "grhash",            "gr"           },
   { "hsr",               "x13sm3"       },
   { "jackpot",           "jha"          },
   { "jane",              "scryptjane"   }, 
