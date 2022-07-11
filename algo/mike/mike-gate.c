@@ -127,13 +127,6 @@ void mike_hash(void* output, const void* input) {
 	sph_shavite512_context ctx_shavite;
 	sph_simd512_context ctx_simd;
 	sph_echo512_context ctx_echo;
-	sph_hamsi512_context ctx_hamsi;
-	sph_fugue512_context ctx_fugue;
-	sph_shabal512_context ctx_shabal;
-	sph_whirlpool_context ctx_whirlpool;
-	sph_haval256_5_context ctx_haval;
-	sph_tiger_context ctx_tiger;
-	sph_gost512_context ctx_gost;
 	sph_sha256_context ctx_sha;
 
 	void *in = (void*) input;
@@ -269,35 +262,31 @@ void mike_hash(void* output, const void* input) {
 
 int scanhash_mike( struct work *work, uint32_t max_nonce, uint64_t *hashes_done, struct thr_info *mythr)
 {
+        uint32_t _ALIGN(64) endiandata[20];
         uint32_t *pdata = work->data;
         uint32_t *ptarget = work->target;
 
-        uint32_t _ALIGN(64) endiandata[20];
+        const uint32_t Htarg = ptarget[7];
         const uint32_t first_nonce = pdata[19];
-        uint32_t nonce = first_nonce;
+        uint32_t n = first_nonce;
         int thr_id = mythr->id;
 
-        if (opt_benchmark)
-                ((uint32_t*)ptarget)[7] = 0x0000ff;
-
-        swab32_array( endiandata, pdata, 20 );
+        for (int k = 0; k < 19; k++)
+                be32enc(&endiandata[k], pdata[k]);
 
         do {
-                const uint32_t Htarg = ptarget[7];
+           be32enc(&endiandata[19], n);
                 uint32_t hash[8];
-                be32enc(&endiandata[19], nonce);
-                mike_hash(hash, endiandata);
+           mike_hash((char*) endiandata, (char*) hash);
+           {
+               pdata[19] = n;
+               submit_solution( work, hash, mythr );
+           }
+           n++;
+        } while (n < max_nonce && !work_restart[thr_id].restart);
 
-                if (hash[7] <= Htarg) {
-                        pdata[19] = nonce;
-                        *hashes_done = pdata[19] - first_nonce;
-                        return 1;
-                }
-                nonce++;
+        *hashes_done = n - first_nonce + 1;
+        pdata[19] = n;
 
-        } while (nonce < max_nonce && !work_restart[thr_id].restart);
-
-        pdata[19] = nonce;
-        *hashes_done = pdata[19] - first_nonce + 1;
         return 0;
 }
